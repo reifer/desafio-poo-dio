@@ -32,6 +32,7 @@ public class Main {
         bootcamp.getConteudos().add(curso1);
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria);
+        System.out.println(bootcamp);
 
         Dev devReinaldo = new Dev();
         devReinaldo.setNome("Reinaldo");
@@ -41,6 +42,8 @@ public class Main {
         devReinaldo.progredir();
         System.out.println("Conteúdos Inscritos de Reinaldo" + devReinaldo.getConteudosInscritos());
         System.out.println("Conteúdos Concluídos de Reinaldo" + devReinaldo.getConteudosConcluidos());
+        devReinaldo.verificarVencimentoCurso();
+        System.out.println("Conteúdos Vencidos de Reinaldo" + devReinaldo.getConteudosVencidos());
         System.out.println("XP: " + devReinaldo.calcularXpTotal());
 
         System.out.println("-------");
@@ -53,6 +56,8 @@ public class Main {
         devJunior.progredir();
         System.out.println("Conteúdos Inscritos de Junior" + devJunior.getConteudosInscritos());
         System.out.println("Conteúdos Concluídos de Junior" + devJunior.getConteudosConcluidos());
+        devJunior.verificarVencimentoCurso();
+        System.out.println("Conteúdos Vencidos de Junior" + devReinaldo.getConteudosVencidos());
         System.out.println("XP: " + devJunior.calcularXpTotal());
     }
 }

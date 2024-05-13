@@ -3,6 +3,7 @@ package br.com.dio.desafio.dominio;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.*;
 
 //@EqualsAndHashCode
@@ -13,10 +14,13 @@ public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+    private Set<Conteudo> conteudosVencidos = new LinkedHashSet<>();
+    private LocalDate dataLimite;
 
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
+        this.dataLimite = bootcamp.getDataFinal();
     }
 
     public void progredir(){
@@ -38,6 +42,13 @@ public class Dev {
         }
         return soma;
 //        return this.conteudosConcluidos.stream().mapToDouble(Conteudo::calcularXp).sum();
+    }
+
+    public void verificarVencimentoCurso() {
+        if (dataLimite.isBefore(LocalDate.now())) {
+            conteudosVencidos.addAll(conteudosInscritos);
+            conteudosInscritos.clear();
+        }
     }
 
     @Override
